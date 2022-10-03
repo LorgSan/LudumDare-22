@@ -6,8 +6,9 @@ public class FlyControllerScript : MonoBehaviour
 {
     void Update()
     {
-        if(gameObject!=null && gameObject.GetComponent(typeof(CharacterController)) )
+        if(gameObject!=null && gameObject.GetComponent(typeof(CharacterController)) && BombOff_Script.bombWentOff == false)
         {
+            Debug.Log("Running");
  
             CharacterController cc = (CharacterController)gameObject.GetComponent( typeof(CharacterController));
  

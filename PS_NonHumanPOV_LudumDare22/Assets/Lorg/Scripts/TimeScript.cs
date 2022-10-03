@@ -64,6 +64,7 @@ public class TimeScript : MonoBehaviour
         if (currentRandom == 9)
         {
             Debug.Log("bomb went off");
+            BombOff_Script.bombWentOff = true;
             CancelInvoke();
         } else 
             if (cycleNumbers >= 3)
