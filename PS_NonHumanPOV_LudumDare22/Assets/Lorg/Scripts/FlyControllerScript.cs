@@ -18,8 +18,12 @@ public class FlyControllerScript : MonoBehaviour
         screenCenter.y = Screen.height * .5f;
     }
     // Update is called once per frame
-    void Updatc()
+    void Update()
     {
+        if(BombOff_Script.bombWentOff)
+        {
+            return;
+        }
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
         mouseDistance.x = (lookInput.x - screenCenter.x) / screenCenter.y;
