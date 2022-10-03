@@ -12,7 +12,9 @@ public class TimeScript : MonoBehaviour
     [SerializeField] AudioClip doomSound;
     [SerializeField] AudioClip doomAmbient;
     [SerializeField] AudioSource audioSource;
-    
+    [SerializeField] BombOff_Script BombOff;
+    [SerializeField] FlyControllerScript FlyController;
+
     struct RandomSelection {
     private int minValue;
     private int maxValue;
@@ -72,7 +74,8 @@ public class TimeScript : MonoBehaviour
             audioSource.PlayOneShot(doomSound);
             audioSource.clip = doomAmbient;
             audioSource.Play();
-            BombOff_Script.bombWentOff = true;
+            BombOff.bombWentOff = true;
+            FlyController.enabled = false;
             CancelInvoke();
         } else 
             if (cycleNumbers >= 3)

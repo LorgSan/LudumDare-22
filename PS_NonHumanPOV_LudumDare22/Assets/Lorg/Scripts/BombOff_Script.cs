@@ -10,7 +10,7 @@ public class BombOff_Script : GenericSingletonClass<BombOff_Script>
     [SerializeField] Transform putler;
     Animator animator;
     [SerializeField] float stepSpeed = 1f;
-    [HideInInspector] public static bool bombWentOff = false;
+    public bool bombWentOff = false;
     Quaternion targetRotation;
     [SerializeField] float buttonTime;
     float idleTime;
