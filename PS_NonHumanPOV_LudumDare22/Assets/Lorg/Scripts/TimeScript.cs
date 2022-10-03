@@ -22,13 +22,6 @@ public class TimeScript : MonoBehaviour
     
     public int GetValue() { return Random.Range(minValue, maxValue + 1); }
     }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log(Randomizer());
-        }
-    }
 
     int Randomizer()
     {

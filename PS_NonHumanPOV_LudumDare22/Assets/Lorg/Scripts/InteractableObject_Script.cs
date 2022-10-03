@@ -7,42 +7,58 @@ public class InteractableObject_Script : MonoBehaviour
 {
 
     [Header("ENTER INFO HERE")]
-    [SerializeField] string default_Text;
-    [SerializeField] string interaction_Text;
-    [SerializeField] Sprite original_Sprite;
-    [SerializeField] Sprite interaction_Sprite;
+    [SerializeField] string actionText;
+    [SerializeField] string answerText;
+    [SerializeField] Sprite defaultSprite;
+    [SerializeField] Sprite answerSprite;
 
     [Header("General Settings")]
     [SerializeField] GameObject UIObject;
-    [SerializeField] Text InteractText;
-    [SerializeField] Text KeyText;
-    [SerializeField] Image UIElement;
     [SerializeField] KeyCode InteractionKey;
+    Text InteractText;
+    Text KeyText;
+    Image UIElement;
+    bool collidingWithMe;
 
-    void OnTriggerEnter(Collider col)
+    void Start()
     {
-        if (col.gameObject.transform.tag == "Fly")
-        {
-            Debug.Log("collision happened");
-            UIObject.SetActive(true);
-        }
-    }
-
-    void OnTriggerExit(Collider col)
-    {
-        UIObject.SetActive(false);
+        UIElement = UIObject.transform.GetChild(0).GetComponent<Image>();
+        InteractText = UIObject.transform.GetChild(1).GetComponent<Text>();
+        KeyText = UIObject.transform.GetChild(2).GetComponent<Text>();
     }
     void Update()
     {
         InputCheck();
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.transform.tag == "Fly")
+        {
+            collidingWithMe = true;
+            InteractText.text = actionText;
+            UIElement.sprite = defaultSprite;
+            KeyText.text = InteractionKey.ToString();
+            KeyText.gameObject.SetActive(true);
+            UIObject.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        collidingWithMe = false;
+        UIObject.SetActive(false);
+        InteractText.text = actionText;
+        KeyText.gameObject.SetActive(false);
+        UIElement.sprite = defaultSprite;
+    }
+
     void InputCheck()
     {
-        if(Input.GetKey(InteractionKey))
+        if(Input.GetKey(InteractionKey) && UIObject.activeSelf == true && collidingWithMe == true)
         {
-            InteractText.text = interaction_Text;
-            UIElement.sprite = interaction_Sprite;
+            InteractText.text = answerText;
+            UIElement.sprite = answerSprite;
             KeyText.gameObject.SetActive(false);
         }
     }
