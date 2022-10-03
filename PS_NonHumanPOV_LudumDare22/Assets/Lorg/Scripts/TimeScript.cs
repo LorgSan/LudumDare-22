@@ -8,6 +8,10 @@ public class TimeScript : MonoBehaviour
     [SerializeField] float stepIncrease = 0.2f;
     [SerializeField] int cycleNumbers;
     [SerializeField] float TimeBetweenCycles = 10f;
+    [SerializeField] AudioClip tenSecPass;
+    [SerializeField] AudioClip doomSound;
+    [SerializeField] AudioClip doomAmbient;
+    [SerializeField] AudioSource audioSource;
     
     struct RandomSelection {
     private int minValue;
@@ -48,6 +52,7 @@ public class TimeScript : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("BombTimer", 0f, TimeBetweenCycles);
     }
 
@@ -64,6 +69,9 @@ public class TimeScript : MonoBehaviour
         if (currentRandom == 9)
         {
             Debug.Log("bomb went off");
+            audioSource.PlayOneShot(doomSound);
+            audioSource.clip = doomAmbient;
+            audioSource.Play();
             BombOff_Script.bombWentOff = true;
             CancelInvoke();
         } else 
@@ -71,5 +79,6 @@ public class TimeScript : MonoBehaviour
             {
                 bombProbability += stepIncrease;
             }
+            audioSource.PlayOneShot(tenSecPass);
     }
 }

@@ -10,7 +10,7 @@ public class SceneManagement : MonoBehaviour
     {
         if(Input.anyKey)
         {
-            SceneManager.LoadScene("gameSceneName");
+            SceneManager.LoadScene(gameSceneName);
         }
     }
 }

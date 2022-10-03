@@ -15,15 +15,21 @@ public class BombOff_Script : GenericSingletonClass<BombOff_Script>
     [SerializeField] float buttonTime;
     float idleTime;
     float step;
+    float textStep;
     [SerializeField] Color fadeColor;
+    [SerializeField] Color textColor;
     Color startColor;
+    Color startTextColor;
     [SerializeField] Image UIFade;
     bool fading;
+    Text endText;
     
     void Start()
     {
         animator = putler.parent.GetComponent<Animator>();
+        endText = UIFade.transform.GetChild(0).GetComponent<Text>();
         startColor = UIFade.color;
+        startTextColor = endText.color;
         UpdateAnimClipTimes();
     }
 
@@ -50,7 +56,16 @@ public class BombOff_Script : GenericSingletonClass<BombOff_Script>
             UIFade.color = lerpColor;
             if (UIFade.color == fadeColor)
             {
-                SceneManager.LoadScene("EndScene");
+                textStep += Time.deltaTime;
+                Color textLerp = Color.Lerp(startTextColor, textColor, textStep);
+                endText.color = textLerp;
+                if (endText.color == textLerp)
+                {
+                    if (Input.anyKey)
+                    {
+                        SceneManager.LoadScene("StartScene");
+                    }
+                }
             }
         }
     }
