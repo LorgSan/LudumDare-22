@@ -7682,7 +7682,7 @@ PrefabInstance:
       objectReference: {fileID: 888426759}
     - target: {fileID: 962607577010372087, guid: e5646ca7f43572c4d9bd8cc28e9a6b10, type: 3}
       propertyPath: TimeBetweenCycles
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 962607577010372089, guid: e5646ca7f43572c4d9bd8cc28e9a6b10, type: 3}
       propertyPath: fly
@@ -11853,7 +11853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2196517145624199463, guid: 49d829cfd75373e49b76aeb225d2f87f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49d829cfd75373e49b76aeb225d2f87f, type: 3}
